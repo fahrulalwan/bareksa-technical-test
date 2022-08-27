@@ -9,8 +9,9 @@
     "airbnb-typescript",
     "eslint:recommended",
 //    "plugin:n/recommended",
-    "plugin:promise/recommended",
+//    "plugin:promise/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
@@ -33,5 +34,8 @@
     "react-hooks",
     "@typescript-eslint"
   ],
-  "rules": {}
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
 }
