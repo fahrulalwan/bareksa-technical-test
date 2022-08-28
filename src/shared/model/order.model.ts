@@ -1,15 +1,19 @@
+import dayjs, { Dayjs } from "dayjs";
+
+export type OrderStatus = "Pending" | "Completed" | "Canceled" | "";
+
 export default class OrderModel {
   orderId: string;
 
-  startDate?: Date;
+  startDate?: Dayjs;
 
-  dueDate?: Date;
+  dueDate?: Dayjs;
 
   fullName: string;
 
   location: string;
 
-  status: string;
+  status: OrderStatus;
 
   conversionItem: string;
 
@@ -28,11 +32,13 @@ export default class OrderModel {
 
   convert(dto: Record<string, any>): OrderModel {
     this.orderId = dto.order_id;
-    this.startDate = new Date(dto.start_date);
-    this.dueDate = new Date(dto.due_date);
+    this.startDate = dayjs(dto.start_date);
+    this.dueDate = dayjs(dto.due_date);
     this.fullName = dto.full_name;
     this.location = dto.location;
     this.status = dto.status;
+    this.status = (this.status[0].toUpperCase() +
+      this.status.slice(1)) as OrderStatus;
     this.conversionItem = dto.conversion_item;
     this.conversionRevenue = dto.conversion_revenue;
 

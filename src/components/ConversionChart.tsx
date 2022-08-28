@@ -7,8 +7,6 @@ const defaultProps: ConversionChartProps = {
 };
 
 function ConversionChart({ orders }: ConversionChartProps) {
-  console.log("data", orders);
-
   return (
     <div className="rounded border p-4">
       <div className="flex items-center justify-between">
