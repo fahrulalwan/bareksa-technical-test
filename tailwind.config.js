@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'sans': ['Montserrat', ...defaultTheme.fontFamily.sans],
+        'encode': ['"Encode Sans Expanded"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
