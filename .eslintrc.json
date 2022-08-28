@@ -34,5 +34,11 @@
     "react-hooks",
     "@typescript-eslint"
   ],
-  "rules": {}
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "prettier/prettier": "warn",
+    "react/no-array-index-key": "off",
+    "react/jsx-key": "warn"
+  }
 }
