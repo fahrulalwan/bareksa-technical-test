@@ -40,6 +40,7 @@
     "prettier/prettier": "warn",
     "react/no-array-index-key": "off",
     "react/jsx-key": "warn",
-    "no-nested-ternary": "warn"
+    "no-nested-ternary": "warn",
+    "react/no-unstable-nested-components": ["warn", { "allowAsProps": true }]
   }
 }

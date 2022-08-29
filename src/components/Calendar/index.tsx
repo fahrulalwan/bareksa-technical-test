@@ -18,7 +18,7 @@ function Calendar({ onFilter }: CalendarProps) {
   }
 
   return (
-    <div className="rounded border px-4 py-5">
+    <div className="flex flex-col rounded border px-4 py-5">
       <div className="flex items-center justify-between space-x-10">
         <CalendarDateToggle
           activeDate={activeDate}
@@ -32,10 +32,16 @@ function Calendar({ onFilter }: CalendarProps) {
         onChangeDateRange={(date) => setSelectedDateRange(date)}
       />
 
-      <div className="mt-5 flex justify-center space-x-3">
+      <div className="mt-auto flex justify-center space-x-3">
         <button
           type="button"
-          className="w-28 rounded-md border border-[#E5E5E5] py-1.5 font-semibold"
+          onClick={() => {
+            const futureValue = [null, null];
+
+            setSelectedDateRange(futureValue);
+            onFilter(futureValue);
+          }}
+          className="w-28 rounded-md border border-[#E5E5E5] py-1.5 font-semibold hover:bg-gray-200"
         >
           Cancel
         </button>
@@ -43,7 +49,7 @@ function Calendar({ onFilter }: CalendarProps) {
           type="button"
           disabled={selectedDateRange.every((each) => !each)}
           onClick={() => onFilter(selectedDateRange)}
-          className="w-28 rounded-md border bg-[#82C341] py-1.5 font-semibold"
+          className="w-28 rounded-md border bg-[#82C341] py-1.5 font-semibold hover:enabled:bg-green-500 disabled:opacity-70"
         >
           Filter
         </button>

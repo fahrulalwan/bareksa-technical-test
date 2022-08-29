@@ -69,7 +69,7 @@ function CalendarDateList({
         ))}
       </ul>
 
-      <div className="mt-5 grid grid-cols-7 text-center font-semibold text-[#333333]">
+      <div className="my-5 grid grid-cols-7 text-center font-semibold text-[#333333]">
         {dateList.map((each, index) => {
           const isStartDate =
             activeDate.year() === dateRange[0]?.year() &&
@@ -93,6 +93,7 @@ function CalendarDateList({
 
           return (
             <button
+              key={activeDate.year() + activeDate.month() + index}
               disabled={!each}
               onClick={() => assignDateRange(each)}
               type="button"
@@ -109,13 +110,13 @@ function CalendarDateList({
                     ? "after:w-1/2"
                     : "after:w-full"
                 } ${
-                  index % 7 === 0 ||
-                  (each === 1 && !isStartDate && "after:rounded-l-full")
+                  (index % 7 === 0 || each === 1) &&
+                  !isStartDate &&
+                  "after:rounded-l-full"
                 } ${
-                  index % 7 === 6 ||
-                  (index === dateList.length - 1 &&
-                    !isEndDate &&
-                    "after:rounded-r-full")
+                  (index % 7 === 6 || index === dateList.length - 1) &&
+                  !isEndDate &&
+                  "after:rounded-r-full"
                 }`}
               >
                 <span

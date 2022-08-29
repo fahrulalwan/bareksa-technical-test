@@ -1,5 +1,5 @@
 import "./App.css";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Dayjs } from "dayjs";
 import Container from "./container/Container";
@@ -9,6 +9,8 @@ import ResponseModel from "./shared/model/response.model";
 import OrderModel from "./shared/model/order.model";
 
 const ConversionChart = lazy(() => import("./components/ConversionChart"));
+const UsersChart = lazy(() => import("./components/UsersChart/index"));
+const RevenueChart = lazy(() => import("./components/RevenueChart/index"));
 const Calendar = lazy(() => import("./components/Calendar/index"));
 const OrderTable = lazy(() => import("./components/OrderTable/index"));
 
@@ -17,26 +19,33 @@ function App() {
   const [filteredOrders, setFilteredOrders] = useState<OrderModel[]>([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchData() {
-    const res = await axios.get(APP_URL);
-    setResponse(new ResponseModel().convert(res.data));
-    setLoading(false);
-  }
+  const fetchData = useCallback(() => {
+    axios
+      .get<ResponseModel>(APP_URL)
+      .then(({ data }) => {
+        const responseModel = new ResponseModel().convert(data);
 
-  useEffect(() => {
-    fetchData();
+        setResponse(responseModel);
+        setFilteredOrders(responseModel.data.orders);
+      })
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
-  function filterOrders(params: (Dayjs | null)[]) {
-    let [startDate, endDate] = params;
+  useEffect(() => fetchData, [fetchData]);
 
-    if (startDate && endDate) {
+  function filterOrders(params: (Dayjs | null)[]) {
+    let [startDate, dueDate] = params;
+
+    if (startDate && dueDate) {
+      console.log("goes through here");
+
       startDate = startDate
         .set("hour", 0)
         .set("minute", 0)
         .set("second", 0)
         .set("millisecond", 0);
-      endDate = endDate
+      dueDate = dueDate
         .set("hour", 0)
         .set("minute", 0)
         .set("second", 0)
@@ -48,12 +57,13 @@ function App() {
             (each.startDate?.valueOf() || NaN) >=
               (startDate?.toDate().valueOf() || NaN) &&
             (each.dueDate?.valueOf() || NaN) >=
-              (endDate?.toDate().valueOf() || NaN)
+              (dueDate?.toDate().valueOf() || NaN)
         ) || [];
 
-      console.log("newResponse", newResponse);
-
       setFilteredOrders(newResponse);
+    } else {
+      console.log("goes through else");
+      setFilteredOrders(response?.data.orders || []);
     }
   }
 
@@ -63,18 +73,14 @@ function App() {
         <Loading />
       ) : (
         <Suspense fallback={<Loading />}>
-          <section className="flex flex-col space-x-4 md:flex-row">
-            <ConversionChart orders={response} />
+          <section className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+            <ConversionChart orders={response?.data.orders} />
+            <UsersChart userCategory={response?.data.userCategory} />
+            <RevenueChart orders={response?.data.orders} />
           </section>
-          <section className="mt-4 flex flex-col space-x-2 md:flex-row">
+          <section className="mt-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
             <Calendar onFilter={(data) => filterOrders(data)} />
-            <OrderTable
-              orders={
-                filteredOrders.length
-                  ? filteredOrders.slice(0, 5)
-                  : response?.data.orders.slice(0, 5) || []
-              }
-            />
+            <OrderTable orders={filteredOrders.slice(0, 5)} />
           </section>
         </Suspense>
       )}

@@ -32,15 +32,15 @@ export default class OrderModel {
 
   convert(dto: Record<string, any>): OrderModel {
     this.orderId = dto.order_id;
-    this.startDate = dayjs(dto.start_date);
-    this.dueDate = dayjs(dto.due_date);
+    this.startDate = dayjs(new Date(dto.start_date));
+    this.dueDate = dayjs(new Date(dto.due_date));
     this.fullName = dto.full_name;
     this.location = dto.location;
     this.status = dto.status;
     this.status = (this.status[0].toUpperCase() +
       this.status.slice(1)) as OrderStatus;
     this.conversionItem = dto.conversion_item;
-    this.conversionRevenue = dto.conversion_revenue;
+    this.conversionRevenue = Number(dto.conversion_revenue);
 
     return this;
   }
