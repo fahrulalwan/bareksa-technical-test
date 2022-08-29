@@ -57,7 +57,7 @@ function RevenueChart({ orders }: RevenueChartProps) {
 
         <button
           type="button"
-          className="ml-5 inline-flex items-center rounded border px-3 py-2 hover:bg-gray-200"
+          className="ml-5 inline-flex items-center rounded border px-3 py-2 hover:bg-gray-200 active:bg-gray-300"
         >
           <span className="text-sm font-semibold">
             {formattedOrders?.at(0)?.dueDate?.format?.("MMM")} -{" "}
@@ -86,7 +86,7 @@ function RevenueChart({ orders }: RevenueChartProps) {
             </defs>
             <XAxis dataKey="dueDate" />
             <YAxis dataKey="conversionRevenue" />
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="1 3" />
             <Tooltip
               content={(param) => (
                 <RevenueChartTooltip

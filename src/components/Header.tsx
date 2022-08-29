@@ -5,7 +5,7 @@ export default function Header() {
 
       <button
         type="button"
-        className="ml-12 mr-auto flex items-center rounded px-5 py-2 hover:bg-gray-200"
+        className="ml-12 mr-auto flex items-center rounded px-5 py-2 hover:bg-gray-200 active:bg-gray-300"
       >
         <span className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#909090]/10 font-bold">
           RH
@@ -34,7 +34,7 @@ export default function Header() {
 
       <button
         type="button"
-        className="relative ml-3 rounded p-2 hover:bg-gray-200"
+        className="relative ml-3 rounded p-2 hover:bg-gray-200 active:bg-gray-300"
       >
         <img src="/icon/bell.svg" alt="bell" className="h-6 w-6" />
 
@@ -43,7 +43,7 @@ export default function Header() {
 
       <button
         type="button"
-        className="relative ml-3 rounded p-2 hover:bg-gray-200"
+        className="relative ml-3 rounded p-2 hover:bg-gray-200 active:bg-gray-300"
       >
         <img src="/icon/cog.svg" alt="settings" className="h-6 w-6" />
       </button>

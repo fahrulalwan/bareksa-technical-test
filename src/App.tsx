@@ -8,7 +8,9 @@ import APP_URL from "./shared/const/app-url.const";
 import ResponseModel from "./shared/model/response.model";
 import OrderModel from "./shared/model/order.model";
 
-const ConversionChart = lazy(() => import("./components/ConversionChart"));
+const ConversionChart = lazy(
+  () => import("./components/ConversionChart/index")
+);
 const UsersChart = lazy(() => import("./components/UsersChart/index"));
 const RevenueChart = lazy(() => import("./components/RevenueChart/index"));
 const Calendar = lazy(() => import("./components/Calendar/index"));
@@ -38,8 +40,6 @@ function App() {
     let [startDate, dueDate] = params;
 
     if (startDate && dueDate) {
-      console.log("goes through here");
-
       startDate = startDate
         .set("hour", 0)
         .set("minute", 0)
@@ -62,7 +62,6 @@ function App() {
 
       setFilteredOrders(newResponse);
     } else {
-      console.log("goes through else");
       setFilteredOrders(response?.data.orders || []);
     }
   }

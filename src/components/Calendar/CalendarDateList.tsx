@@ -123,7 +123,9 @@ function CalendarDateList({
                   className={`z-10 mx-auto flex h-10 w-10 items-center justify-center rounded-full ${
                     isRangeSelected
                       ? "bg-[#8772B0] text-white"
-                      : `text-[#333333] ${each && "hover:bg-gray-200"}`
+                      : `text-[#333333] ${
+                          each && "hover:bg-gray-200 active:bg-gray-300"
+                        }`
                   }`}
                 >
                   {each}

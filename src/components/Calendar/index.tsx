@@ -41,7 +41,7 @@ function Calendar({ onFilter }: CalendarProps) {
             setSelectedDateRange(futureValue);
             onFilter(futureValue);
           }}
-          className="w-28 rounded-md border border-[#E5E5E5] py-1.5 font-semibold hover:bg-gray-200"
+          className="w-28 rounded-md border border-[#E5E5E5] py-1.5 font-semibold hover:bg-gray-200 active:bg-gray-300"
         >
           Cancel
         </button>

@@ -31,7 +31,7 @@ function CalendarDateToggle({
         <button
           type="button"
           onClick={setPreviousMonth}
-          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F]"
+          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
         >
           <svg
             className="stroke-current"
@@ -58,7 +58,7 @@ function CalendarDateToggle({
         <button
           type="button"
           onClick={setNextMonth}
-          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F]"
+          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
         >
           <svg
             className="stroke-current"
@@ -83,7 +83,7 @@ function CalendarDateToggle({
         <button
           onClick={setPreviousYear}
           type="button"
-          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F]"
+          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
         >
           <svg
             className="stroke-current"
@@ -110,7 +110,7 @@ function CalendarDateToggle({
         <button
           type="button"
           onClick={setNextYear}
-          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F]"
+          className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
         >
           <svg
             className="stroke-current"

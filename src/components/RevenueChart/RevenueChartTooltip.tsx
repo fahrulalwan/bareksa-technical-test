@@ -17,13 +17,16 @@ function RevenueChartTooltip({
   if (active) {
     const { payload } = response?.[0] || { payload: null };
     return (
-      <div className="space-y-3 rounded-lg bg-white/90 p-4">
+      <div
+        className="space-y-3 rounded-lg bg-white/90 p-3 drop-shadow-md"
+        tabIndex={-1}
+      >
         <p className="text-xs font-bold">
           {payload?.dueDate?.format("DD MMMM YYYY")}
         </p>
         <div className="text-xs">
           <p>Conversion Revenue:</p>
-          <p className="font-bold">{payload?.conversionRevenue}</p>
+          <p className="font-bold">${payload?.conversionRevenue}</p>
         </div>
       </div>
     );
