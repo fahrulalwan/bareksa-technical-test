@@ -90,7 +90,7 @@ function ConversionChart({ orders }: ConversionChartProps) {
                 />
               ))}
             </Pie>
-            <Tooltip content={<ConversionChartTooltip />} offset={-15} />
+            <Tooltip content={<ConversionChartTooltip />} offset={-30} />
             <Legend
               verticalAlign="bottom"
               content={<ConversionChartLegend />}
