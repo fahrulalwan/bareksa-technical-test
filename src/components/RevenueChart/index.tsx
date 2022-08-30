@@ -90,9 +90,9 @@ function RevenueChart({ orders }: RevenueChartProps) {
                 <stop offset="99%" stopColor="#FFFFFF" />
               </linearGradient>
             </defs>
-            <XAxis dataKey="dueDate" />
-            <YAxis dataKey="conversionRevenue" />
-            <CartesianGrid strokeDasharray="1 3" />
+            <XAxis type="category" dataKey="dueDate" />
+            <YAxis type="number" dataKey="conversionRevenue" />
+            <CartesianGrid horizontal={false} stroke="#E5E5E5" />
             <Tooltip
               content={(param) => (
                 <RevenueChartTooltip
