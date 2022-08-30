@@ -48,9 +48,7 @@ function ConversionChart({ orders }: ConversionChartProps) {
     setFormattedOrders(arrayedOrders);
   }, [orders]);
 
-  useEffect(() => {
-    formatOrders();
-  }, [formatOrders]);
+  useEffect(() => formatOrders(), [formatOrders]);
 
   return (
     <div className="rounded border p-4">

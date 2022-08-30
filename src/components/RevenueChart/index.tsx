@@ -52,9 +52,7 @@ function RevenueChart({ orders }: RevenueChartProps) {
     setFormattedOrders(sortedOrders);
   }, [orders]);
 
-  useEffect(() => {
-    return formatOrders;
-  }, [formatOrders]);
+  useEffect(() => formatOrders(), [formatOrders]);
 
   return (
     <div className="flex-1 rounded border p-4">

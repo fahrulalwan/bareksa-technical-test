@@ -33,7 +33,7 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => fetchData, [fetchData]);
+  useEffect(() => fetchData(), [fetchData]);
 
   function filterOrders(params: (Dayjs | null)[]) {
     let [startDate, dueDate] = params;
