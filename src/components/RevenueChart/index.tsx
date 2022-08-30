@@ -27,12 +27,18 @@ function RevenueChart({ orders }: RevenueChartProps) {
   const formatOrders = useCallback(() => {
     const sortedOrders = (orders || [])
       .sort((a, b) => (a.dueDate?.valueOf() || 0) - (b.dueDate?.valueOf() || 0))
-      .reduce((acc, futureModel) => {
+      .reduce((acc, futureModel, index) => {
+        if (!index) {
+          acc.push(futureModel);
+
+          return acc;
+        }
+
         const currentModel = acc[acc.length - 1];
 
         if (
-          currentModel?.dueDate?.format("YYYY-MM-DD") ===
-          futureModel?.dueDate?.format("YYYY-MM-DD")
+          currentModel.dueDate?.format("YYYY-MM-DD") ===
+          futureModel.dueDate?.format("YYYY-MM-DD")
         ) {
           currentModel.conversionRevenue += futureModel.conversionRevenue;
 
@@ -47,7 +53,7 @@ function RevenueChart({ orders }: RevenueChartProps) {
   }, [orders]);
 
   useEffect(() => {
-    formatOrders();
+    return formatOrders;
   }, [formatOrders]);
 
   return (
@@ -112,7 +118,10 @@ function RevenueChart({ orders }: RevenueChartProps) {
         <p className="text-xs font-semibold tracking-wide text-[#9C9C9C]">
           Total Revenue
         </p>
-        <p className="text-2xl font-bold text-[#333333]">
+        <p
+          className="text-2xl font-bold text-[#333333]"
+          id="revenueChart-total"
+        >
           $
           {formattedOrders?.reduce(
             (acc, curr) => acc + curr.conversionRevenue,

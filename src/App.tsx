@@ -30,7 +30,6 @@ function App() {
         setResponse(responseModel);
         setFilteredOrders(responseModel.data.orders);
       })
-      .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, []);
 

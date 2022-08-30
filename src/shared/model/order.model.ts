@@ -32,8 +32,8 @@ export default class OrderModel {
 
   convert(dto: Record<string, any>): OrderModel {
     this.orderId = dto.order_id;
-    this.startDate = dayjs(new Date(dto.start_date));
-    this.dueDate = dayjs(new Date(dto.due_date));
+    this.startDate = dayjs(dto.start_date);
+    this.dueDate = dayjs(dto.due_date);
     this.fullName = dto.full_name;
     this.location = dto.location;
     this.status = dto.status;

@@ -91,9 +91,11 @@ function CalendarDateList({
 
           const isRangeSelected = isStartDate || isEndDate;
 
+          const keyProp = activeDate.year() + activeDate.month() + index;
+
           return (
             <button
-              key={activeDate.year() + activeDate.month() + index}
+              key={keyProp}
               disabled={!each}
               onClick={() => assignDateRange(each)}
               type="button"

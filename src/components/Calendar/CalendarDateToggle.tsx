@@ -29,6 +29,7 @@ function CalendarDateToggle({
     <>
       <div className="inline-flex items-center justify-between space-x-2">
         <button
+          id="calendar-prev-month"
           type="button"
           onClick={setPreviousMonth}
           className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
@@ -56,6 +57,7 @@ function CalendarDateToggle({
         </span>
 
         <button
+          id="calendar-next-month"
           type="button"
           onClick={setNextMonth}
           className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
@@ -81,6 +83,7 @@ function CalendarDateToggle({
 
       <div className="inline-flex items-center justify-between space-x-2">
         <button
+          id="calendar-prev-year"
           onClick={setPreviousYear}
           type="button"
           className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
@@ -108,6 +111,7 @@ function CalendarDateToggle({
         </span>
 
         <button
+          id="calendar-next-year"
           type="button"
           onClick={setNextYear}
           className="rounded text-[#333333] hover:bg-gray-200 hover:text-[#5F9F2F] active:bg-gray-300"
